@@ -3,6 +3,7 @@
 날짜: 2025-10-30
 
 ## PM / Analyst
+
 - 산출물:
   - 기능 명세: `docs/recurring-function-spec.md`
   - 추적성 테이블: `docs/traceability/requirements-traceability.csv`
@@ -11,12 +12,14 @@
   - c056031 chore(bmm): initialize workflow, sprint status, traceability and specs for recurring feature
 
 ## Architect
+
 - 산출물:
   - Tech Spec 초안: `tech-specs/recurring-events.md`
 - 관련 커밋:
   - c056031 chore(bmm): initialize workflow, sprint status, traceability and specs for recurring feature
 
 ## TEA
+
 - 산출물:
   - 테스트 플랜: `tests/specs/recurring-events.testplan.md`
   - 테스트 정책: `.cursor/rules/.cursorrules` (필수 규칙 포함)
@@ -25,6 +28,7 @@
   - c056031 chore(bmm): initialize workflow, sprint status, traceability and specs for recurring feature
 
 ## SM
+
 - 산출물:
   - 스프린트 상태: `sprint-status.yaml` (BACKLOG 시드, 첫 TODO 설정)
   - 메타데이터 추가: `assigneeRole`, `owner`, `updatedAt`
@@ -33,10 +37,14 @@
   - 78aa964 chore(meta): add assignee/owner timestamps to sprint and owner role to workflow status
 
 ## DEV
+
 - 진행:
   - IN PROGRESS: STORY-RECUR-001 (반복 유형 선택 로직 및 UI)
   - Red 테스트 추가: `src/__tests__/medium.recurring-select.spec.tsx`
-- 다음: 테스트 실패 확인 → 최소 구현(Green) → 리팩토링
+- 커밋:
+  - 30580a2 test(recurring): add red test for repeat type selection UI (STORY-RECUR-001)
+  - c537551 feat(recurring): enable repeat type/interval/end date UI (STORY-RECUR-001)
+- 다음: 리팩토링 및 추가 시나리오 보강 (종료일/간격 유효성)
 
 ---
 
