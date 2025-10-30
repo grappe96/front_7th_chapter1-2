@@ -57,40 +57,45 @@ export function computeRecurringDates(rule: RecurrenceRule): Date[] {
   // include start if in range
   pushIfInRange(start);
 
-  let cursor = new Date(start);
-  while (true) {
-    let next: Date | null;
-    if (type === 'daily') {
-      next = addDays(cursor, interval);
-    } else if (type === 'weekly') {
-      next = addWeeks(cursor, interval);
-    } else if (type === 'monthly') {
-      next = addMonthsKeepingDay(cursor, interval);
-    } else {
-      next = addYearsKeepingMonthDay(cursor, interval);
-    }
-
-    // if skipping (null), advance cursor base by interval until a valid date or beyond until
-    if (next === null) {
-      // move base forward but keep searching
-      if (type === 'monthly') {
-        // advance month base
-        const tmp = new Date(cursor);
-        tmp.setMonth(tmp.getMonth() + interval);
-        cursor = tmp;
-        // try again in next loop
-        continue;
-      }
-      if (type === 'yearly') {
-        const tmp = new Date(cursor);
-        tmp.setFullYear(tmp.getFullYear() + interval);
-        cursor = tmp;
-        continue;
-      }
-    } else {
+  if (type === 'daily' || type === 'weekly') {
+    let cursor = new Date(start);
+    while (true) {
+      const next = type === 'daily' ? addDays(cursor, interval) : addWeeks(cursor, interval);
       if (next > until) break;
       results.push(new Date(next));
       cursor = next;
+    }
+  } else if (type === 'monthly') {
+    const day = start.getDate();
+    let year = start.getFullYear();
+    let month = start.getMonth();
+    while (true) {
+      // advance logical month by interval
+      month += interval;
+      year += Math.floor(month / 12);
+      month = ((month % 12) + 12) % 12;
+      const candidate = new Date(year, month, day);
+      if (candidate > until) break;
+      // valid only if JS did not roll over the month (i.e., day exists in that month)
+      if (candidate.getMonth() === month) {
+        results.push(candidate);
+      }
+    }
+  } else if (type === 'yearly') {
+    const month = start.getMonth();
+    const day = start.getDate();
+    let year = start.getFullYear();
+    while (true) {
+      year += interval;
+      const candidate = new Date(year, month, day);
+      if (candidate > until) break;
+      // Skip invalid Feb 29 on non-leap years
+      if (month === 1 && day === 29 && !isLeapYear(year)) {
+        continue;
+      }
+      if (candidate.getMonth() === month) {
+        results.push(candidate);
+      }
     }
   }
 
