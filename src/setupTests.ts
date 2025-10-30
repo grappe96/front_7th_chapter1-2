@@ -30,7 +30,6 @@ afterAll(() => {
   vi.useRealTimers();
   server.close();
 });
-
 // Reduce file handle usage from MUI icons during tests to avoid EMFILE on Windows
 vi.mock('@mui/icons-material', () => {
   // eslint-disable-next-line @typescript-eslint/no-var-requires
