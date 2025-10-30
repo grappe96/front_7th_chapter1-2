@@ -1,51 +1,51 @@
-# BMM Activity Log
+# BMM Activity Log (Chronological)
 
 날짜: 2025-10-30
 
-## PM / Analyst
+## 타임라인
 
+1) c056031 — chore(bmm): initialize workflow, sprint status, traceability and specs for recurring feature
+- 역할: PM, Architect, TEA, SM (초기화)
 - 산출물:
-  - 기능 명세: `docs/recurring-function-spec.md`
-  - 추적성 테이블: `docs/traceability/requirements-traceability.csv`
-  - 워크플로 상태: `docs/bmm-workflow-status.md` (currentOwnerRole: PM)
-- 관련 커밋:
-  - c056031 chore(bmm): initialize workflow, sprint status, traceability and specs for recurring feature
+  - `docs/bmm-workflow-status.md`
+  - `docs/traceability/requirements-traceability.csv`
+  - `tech-specs/recurring-events.md`
+  - `tests/specs/recurring-events.testplan.md`
 
-## Architect
-
+2) 6501004 — chore(rules): simplify Cursor coding style to essential rules
+- 역할: TEA
 - 산출물:
-  - Tech Spec 초안: `tech-specs/recurring-events.md`
-- 관련 커밋:
-  - c056031 chore(bmm): initialize workflow, sprint status, traceability and specs for recurring feature
+  - `.cursor/rules/.cursorrules`
 
-## TEA
-
+3) dc11302 — chore(sprint): seed backlog from recurring spec and set first TODO (STORY-RECUR-001)
+- 역할: SM
 - 산출물:
-  - 테스트 플랜: `tests/specs/recurring-events.testplan.md`
-  - 테스트 정책: `.cursor/rules/.cursorrules` (필수 규칙 포함)
-- 관련 커밋:
-  - 6501004 chore(rules): simplify Cursor coding style to essential rules
-  - c056031 chore(bmm): initialize workflow, sprint status, traceability and specs for recurring feature
+  - `sprint-status.yaml` (BACKLOG 시드 및 첫 TODO 설정)
 
-## SM
-
+4) 78aa964 — chore(meta): add assignee/owner timestamps to sprint and owner role to workflow status
+- 역할: SM, PM
 - 산출물:
-  - 스프린트 상태: `sprint-status.yaml` (BACKLOG 시드, 첫 TODO 설정)
-  - 메타데이터 추가: `assigneeRole`, `owner`, `updatedAt`
-- 관련 커밋:
-  - dc11302 chore(sprint): seed backlog from recurring spec and set first TODO (STORY-RECUR-001)
-  - 78aa964 chore(meta): add assignee/owner timestamps to sprint and owner role to workflow status
+  - `sprint-status.yaml` (assigneeRole/owner/updatedAt 추가)
+  - `docs/bmm-workflow-status.md` (currentOwnerRole 추가)
 
-## DEV
+5) 30580a2 — test(recurring): add red test for repeat type selection UI (STORY-RECUR-001)
+- 역할: DEV
+- 산출물:
+  - `src/__tests__/medium.recurring-select.spec.tsx` (Red 테스트)
 
-- 진행:
-  - IN PROGRESS: STORY-RECUR-001 (반복 유형 선택 로직 및 UI)
-  - Red 테스트 추가: `src/__tests__/medium.recurring-select.spec.tsx`
-- 커밋:
-  - 30580a2 test(recurring): add red test for repeat type selection UI (STORY-RECUR-001)
-  - c537551 feat(recurring): enable repeat type/interval/end date UI (STORY-RECUR-001)
-- 다음: 리팩토링 및 추가 시나리오 보강 (종료일/간격 유효성)
+6) c537551 — feat(recurring): enable repeat type/interval/end date UI (STORY-RECUR-001)
+- 역할: DEV
+- 산출물:
+  - `src/App.tsx` (반복 유형/간격/종료일 UI 활성화)
+
+7) 5cb9d5a — docs(bmm): log DEV red/green commits for STORY-RECUR-001
+- 역할: PM/SM (기록)
+- 산출물:
+  - `docs/bmm-activity-log.md` (본 로그 갱신)
 
 ---
 
-참고: 커밋 해시는 최근 6개에서 발췌했습니다. 이후 작업은 본 문서 하단에 항목을 추가하는 방식으로 누적 기록합니다.
+다음 작업 제안
+- DEV: 리팩토링 및 추가 시나리오(종료일/간격 유효성) 테스트 보강
+- TEA: 테스트 플랜에 유효성/엣지 추가
+- SM: 다음 스토리 TODO 전이 검토
