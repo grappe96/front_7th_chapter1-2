@@ -30,3 +30,20 @@ afterAll(() => {
   vi.useRealTimers();
   server.close();
 });
+
+// Reduce file handle usage from MUI icons during tests to avoid EMFILE on Windows
+vi.mock('@mui/icons-material', () => {
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  const React = require('react');
+  const Stub = (props: any) => React.createElement('span', props);
+  return {
+    __esModule: true,
+    Notifications: Stub,
+    ChevronLeft: Stub,
+    ChevronRight: Stub,
+    Delete: Stub,
+    Edit: Stub,
+    Close: Stub,
+    default: Stub,
+  };
+});
