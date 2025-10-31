@@ -7,11 +7,17 @@ describe('Recurring - Repeat Type Selection (integration)', () => {
   it('토글을 켜면 반복 유형 드롭다운이 나타난다', async () => {
     render(React.createElement(App));
 
-    const toggle = await screen.findByLabelText('반복 일정');
+    // MUI Checkbox를 role로 찾기
+    const toggle = screen.getByRole('checkbox', { name: '반복 일정' });
+    expect(toggle).not.toBeChecked();
+
+    // 토글 클릭
     fireEvent.click(toggle);
 
-    // MUI Select는 버튼 역할로 렌더링되며, aria-labelledby를 통해 라벨 이름을 가진다
-    const selectButton = await screen.findByRole('button', { name: '반복 유형' });
-    expect(selectButton).toBeInTheDocument();
+    expect(toggle).toBeChecked();
+
+    // 반복 유형 드롭다운 나타나는지 확인
+    const repeatTypeLabel = await screen.findByText('반복 유형');
+    expect(repeatTypeLabel).toBeInTheDocument();
   });
 });
