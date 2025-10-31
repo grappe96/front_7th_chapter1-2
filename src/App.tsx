@@ -443,7 +443,7 @@ function App() {
                 <Select
                   size="small"
                   labelId="repeat-type-label"
-                  value={repeatType === 'none' ? 'daily' : (repeatType as any)}
+                  value={repeatType === 'none' ? 'daily' : repeatType}
                   onChange={(e) => setRepeatType(e.target.value as RepeatType)}
                 >
                   <MenuItem value="daily">매일</MenuItem>

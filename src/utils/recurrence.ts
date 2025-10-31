@@ -21,28 +21,6 @@ function addWeeks(date: Date, weeks: number): Date {
   return addDays(date, weeks * 7);
 }
 
-function addMonthsKeepingDay(date: Date, months: number): Date | null {
-  const year = date.getFullYear();
-  const month = date.getMonth();
-  const day = date.getDate();
-  const target = new Date(year, month + months, 1);
-  const lastDay = new Date(target.getFullYear(), target.getMonth() + 1, 0).getDate();
-  if (day > lastDay) {
-    return null; // skip months without that day (e.g., 31st)
-  }
-  return new Date(target.getFullYear(), target.getMonth(), day);
-}
-
-function addYearsKeepingMonthDay(date: Date, years: number): Date | null {
-  const y = date.getFullYear() + years;
-  const m = date.getMonth();
-  const d = date.getDate();
-  // handle Feb 29 edge case
-  if (m === 1 && d === 29 && !isLeapYear(y)) {
-    return null; // skip non-leap years
-  }
-  return new Date(y, m, d);
-}
 
 export function computeRecurringDates(rule: RecurrenceRule): Date[] {
   const { type, interval, start, until } = rule;

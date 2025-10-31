@@ -32,9 +32,9 @@ afterAll(() => {
 });
 // Reduce file handle usage from MUI icons during tests to avoid EMFILE on Windows
 vi.mock('@mui/icons-material', () => {
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
   const React = require('react');
-  const Stub = (props: any) => React.createElement('span', props);
+  const Stub = (props: Record<string, unknown>) => React.createElement('span', props);
   return {
     __esModule: true,
     Notifications: Stub,
