@@ -10,6 +10,8 @@ describe('Recurring - Repeat Type Selection (integration)', () => {
     const toggle = await screen.findByLabelText('반복 일정');
     fireEvent.click(toggle);
 
-    expect(await screen.findByText('반복 유형')).toBeInTheDocument();
+    // MUI Select는 버튼 역할로 렌더링되며, aria-labelledby를 통해 라벨 이름을 가진다
+    const selectButton = await screen.findByRole('button', { name: '반복 유형' });
+    expect(selectButton).toBeInTheDocument();
   });
 });

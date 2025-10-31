@@ -6,7 +6,6 @@ next_action: derive-epics-from-recurring-spec
 currentOwnerRole: PM
 
 notes:
+
 - Align PRD/Epics with `docs/recurring-function-spec.md`
 - Set initial backlog and DoR rules
-
-

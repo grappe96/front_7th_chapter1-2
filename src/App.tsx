@@ -439,11 +439,12 @@ function App() {
           {isRepeating && (
             <Stack spacing={2}>
               <FormControl fullWidth>
-                <FormLabel>반복 유형</FormLabel>
+                <FormLabel id="repeat-type-label">반복 유형</FormLabel>
                 <Select
                   size="small"
                   value={repeatType === 'none' ? 'daily' : (repeatType as any)}
                   onChange={(e) => setRepeatType(e.target.value as RepeatType)}
+                  aria-labelledby="repeat-type-label"
                 >
                   <MenuItem value="daily">매일</MenuItem>
                   <MenuItem value="weekly">매주</MenuItem>
