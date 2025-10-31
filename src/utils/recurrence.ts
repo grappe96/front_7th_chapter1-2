@@ -21,7 +21,6 @@ function addWeeks(date: Date, weeks: number): Date {
   return addDays(date, weeks * 7);
 }
 
-
 export function computeRecurringDates(rule: RecurrenceRule): Date[] {
   const { type, interval, start, until } = rule;
   if (interval < 1) throw new Error('interval must be >= 1');
